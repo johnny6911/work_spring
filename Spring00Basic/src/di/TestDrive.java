@@ -19,9 +19,10 @@ public class TestDrive {
 		//MyUserDao dao = new MyUserDao();
 		
 		// DI-2 (만약 인터페이스만으로는 안된다하면..)
-		UserDao dao = new MyUserDao(); 
+		//UserDao dao = new MyUserDao(); 
 		
 		// DI-3: Factory를 이용하자
+		UserDao dao = DaoFactory.getDao("my");
 		
 		
 		//3. dao 객체를 이용하여 데이터베이스에 정보 저장
