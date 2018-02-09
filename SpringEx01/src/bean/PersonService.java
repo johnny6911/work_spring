@@ -27,6 +27,6 @@ public class PersonService {
 	// 2-3. person 객체의 getName() 호출하여 그 값을 출력하는 메소드 만들기
 	
 	public void john() {
-		System.out.println(person.getName());
+		System.out.println("이름 :" +person.getName() + ", 나이 : " + person.getAge() + " 소개: " + person.getGreeting());
 	}
 }

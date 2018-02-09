@@ -8,9 +8,16 @@
 		<constructor-arg>
 			<value type="java.lang.String">존</value>
 		</constructor-arg>
+		<constructor-arg>
+			<value type="int">2</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value type="java.lang.String">안녕하세요</value>
+		</constructor-arg>
+		
 	</bean>
 	
-	<bean id="service" class="bean.PersonService" autowire="byType">
+	<bean id="service" class="bean.PersonService" autowire="constructor">
 	</bean>
 	
 	
