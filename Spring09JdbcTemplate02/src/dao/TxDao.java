@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import model.Job;
 
 @Component //그냥 쓰면 타입을 찾아서 연결을 시켜줌
-@Repository // Transaction 사용을 하려면 Dao 클래스에 @Repository를 작성해야 한다
+@Repository // Transaction 사용을 하려면 Dao 클래스에 @Repository를 작성해야 한다, bean 객체로 만들어서 사용하겠다는것(Annotation 이용함)
 public class TxDao {
 	
 	@Autowired	// XML 설정파일에서 autowire="byType" 한 것과 동일하게 동작 
