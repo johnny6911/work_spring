@@ -13,7 +13,7 @@ public class BoardDao {
 	
 	@Autowired
 	private SqlSessionFactory factory;
-	private SqlSession session;
+	private SqlSession session; // sql세션 객체를 직접가져오기에 닫을 필요가 없음, 해당 방법이 편함
 	
 	public Board getBoard(Integer no) {
 		SqlSession session = factory.openSession();
