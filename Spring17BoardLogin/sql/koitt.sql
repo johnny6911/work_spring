@@ -1,5 +1,7 @@
 #DDL(Data Definition Language)
 DROP TABLE board;
+DROP TABLE users_authority;
+DROP TABLE authority;
 DROP TABLE users;
 
 CREATE TABLE users (
@@ -9,6 +11,19 @@ CREATE TABLE users (
 	name		VARCHAR(255) NOT NULL,
 	attachment	VARCHAR(255),
 	UNIQUE (email)
+);
+
+CREATE TABLE authority(
+	id INT NOT NULL PRIMARY KEY,
+	name VARCHAR(30) NOT NULL
+);
+
+# 사용자 번호와 사용자 권한 아이디값을 연결하는 테이블
+CREATE TABLE users_authority (
+	users_no INT NOT NULL,
+	authority_id INT NOT NULL,
+	FOREIGN KEY (users_no) REFERENCES users(no),
+	FOREIGN KEY (authority_id) REFERENCES authority(id)
 );
 
 CREATE TABLE board (
@@ -22,14 +37,31 @@ CREATE TABLE board (
 );
 
 #DML(Data Manipulation Language)
+
+#권한 입력
+INSERT INTO authority (id, name)
+	VALUES (10, 'ADMIN');
+
+INSERT INTO authority (id, name)
+	VALUES (20, 'USER');
+	
+	
+# 사용자 입력 (비밀번호는 1234)
 INSERT INTO users (email, password, name, attachment)
-	VALUES ('teachertophoon@gmail.com', '1234', '정상훈', NULL);
+	VALUES ('admin@gmail.com', '$2a$10$EJeSjUNuB9CbZQvQtioHxeeCP.qBFsXHMmHBLgq5aqKqAAd6OBD82', '관리자', NULL);
+
+INSERT INTO users (email, password, name, attachment)
+	VALUES ('gildong@gmail.com', '$2a$10$EJeSjUNuB9CbZQvQtioHxeeCP.qBFsXHMmHBLgq5aqKqAAd6OBD82', '홍길동', NULL);
 	
 INSERT INTO users (email, password, name, attachment)
-	VALUES ('gildong@gmail.com', '5678', '홍길동', NULL);
+	VALUES ('younghee@gmail.com', '$2a$10$EJeSjUNuB9CbZQvQtioHxeeCP.qBFsXHMmHBLgq5aqKqAAd6OBD82', '김관사', NULL);
 	
-INSERT INTO users (email, password, name, attachment)
-	VALUES ('younghee@gmail.com', '7788', '김영희', NULL);
+# 사용자에게 권한 부여
+INSERT INTO users_authority VALUES (1, 10); #관리자 사용자에게 관리자 권한 부여
+INSERT INTO users_authority VALUES (2, 20); #홍길동 사용자에게 사용자 권한 부여
+INSERT INTO users_authority VALUES (3, 10); #김관사 사용자에게 관리자 권한 부여
+INSERT INTO users_authority VALUES (3, 20); #김관사 사용자에게 사용자 권한 부여
+
 	
 INSERT INTO board (title, content, user_no, regdate, attachment)
 	VALUES ('제목-1', '내용-1', 1, STR_TO_DATE('2018-02-01', '%Y-%m-%d'), NULL);
@@ -42,9 +74,12 @@ INSERT INTO board (title, content, user_no, regdate, attachment)
 	
 #DQL(Data Query Language)
 SELECT * FROM board;
-
-
 SELECT * FROM users;
+SELECT * FROM authority;
+SELECT * FROM users_authority;
+
+
+
 
 
 

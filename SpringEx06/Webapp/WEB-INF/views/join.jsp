@@ -8,7 +8,7 @@
 	<form action="<c:url value='/join.do'/>"method="post" enctype="multipart/form-data">
 		<label>이메일 <input type="email" name="email"></label><br>
 		<label>비밀번호 <input type="password" name="password"></label><br>
-		<label>이름 <input type="text" name="name"></label><br>
+		<label>이름 <input type="text" name="name" ></label><br>
 		<label>첨부 파일 <input type="file" name="attachment"></label><br>
 		<input type="submit" value="회원가입">
 	</form>

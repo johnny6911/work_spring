@@ -5,7 +5,7 @@
   
   <mapper namespace="com.koitt.book.model.Book">
   	<insert id="insert-book" parameterType="Book">
-  		INSERT INTO board (title, author, publisher, price, description)
+  		INSERT INTO book (title, author, publisher, price, description)
   		VALUES (#{title}, #{author}, #{publisher}, #{price}, #{description}) 
   	</insert>
   	

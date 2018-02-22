@@ -34,9 +34,16 @@ public class UsersDaoImpl implements UsersDao {
 	}
 
 	@Override
-	public Users select(Integer no) {
-		// TODO Auto-generated method stub
-		return null;
+	public Users select(Integer no) throws UsersException {
+		Users users = null;
+		
+		try {
+			users = session.selectOne(MAPPER_NS + ".select-users", no);
+		
+		} catch (Exception e) {
+			throw new UsersException(e.getMessage());
+		}
+		return users;
 	}
 
 	@Override
@@ -65,6 +72,20 @@ public class UsersDaoImpl implements UsersDao {
 	public void update(Users users) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Users selectByEmail(String email) throws UsersException {
+		Users users = null;
+		
+		try {
+			session.selectOne(MAPPER_NS + ".select-users-by-email", email);
+			
+		} catch (Exception e) {
+			throw new UsersException(e.getMessage());
+		}
+		
+		return users;
 	}
 
 }
