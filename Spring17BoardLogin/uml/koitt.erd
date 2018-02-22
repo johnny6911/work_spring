@@ -80,8 +80,8 @@
                   <constraint>
                     <height>-1</height>
                     <width>-1</width>
-                    <x>60</x>
-                    <y>60</y>
+                    <x>51</x>
+                    <y>229</y>
                   </constraint>
                   <sourceConnections>
                     <net.java.amateras.db.visual.model.ForeignKeyModel>
@@ -108,8 +108,8 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
-                          <x>10</x>
-                          <y>10</y>
+                          <x>51</x>
+                          <y>350</y>
                         </constraint>
                         <sourceConnections/>
                         <targetConnections>
