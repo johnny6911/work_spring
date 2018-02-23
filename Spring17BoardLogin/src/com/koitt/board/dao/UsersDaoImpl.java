@@ -79,7 +79,7 @@ public class UsersDaoImpl implements UsersDao {
 		Users users = null;
 		
 		try {
-			session.selectOne(MAPPER_NS + ".select-users-by-email", email);
+			users = session.selectOne(MAPPER_NS + ".select-users-by-email", email);
 			
 		} catch (Exception e) {
 			throw new UsersException(e.getMessage());

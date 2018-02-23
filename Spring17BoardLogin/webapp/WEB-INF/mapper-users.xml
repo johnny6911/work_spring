@@ -20,18 +20,18 @@
   		</collection>
   	</resultMap>
   	
-  	<select id="select-users" parameterType="int" resultType="UsersResultMap">
+  	<select id="select-users" parameterType="int" resultMap="UsersResultMap">
   		SELECT u.no, u.email, u.password, u.name, u.attachment, ua.id, ua.name as "aname"
-		FROM users u, #users테이블은 u라는 별칭으로 사용
+		FROM users u, 
 			(SELECT users_authority.users_no, authority.id, authority.name
 			FROM users_authority, authority
 			WHERE users_authority.authority_id = authority.id) ua
 		WHERE u.no = ua.users_no AND u.no = #{no}
   	</select>
   	
-  	<select id="select-users-by-email" parameterType="String" resultType="UsersResultMap">
+  	<select id="select-users-by-email" parameterType="String" resultMap="UsersResultMap">
   		SELECT u.no, u.email, u.password, u.name, u.attachment, ua.id, ua.name as "aname"
-		FROM users u, #users테이블은 u라는 별칭으로 사용
+		FROM users u,
 			(SELECT users_authority.users_no, authority.id, authority.name
 			FROM users_authority, authority
 			WHERE users_authority.authority_id = authority.id) ua

@@ -21,7 +21,7 @@ import com.koitt.board.model.UsersException;
  * 스프링은 아래 클래스를 객체화해서 사용하게 된다
  * (applicationContext.xml user-service-ref 속성 참고)
  */
-@Service("customUserDetailsService")
+@Service
 public class CustomUserDetailsService implements UserDetailsService{
 
 	@Autowired
@@ -36,6 +36,7 @@ public class CustomUserDetailsService implements UserDetailsService{
 			 * 해당 사용자의 정보를 불러온다
 			 */
 			Users users = service.detailByEmail(email);
+			System.out.println(email);
 			
 			/* 
 			 * 해당 사용자가 존재하지 않으면
