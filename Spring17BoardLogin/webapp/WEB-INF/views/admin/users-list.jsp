@@ -5,6 +5,7 @@
 <head><title>사용자 목록</title></head>
 <body>
 	<h1>사용자 목록</h1>
+	<a href="<c:url value='/index.do'/> ">홈으로 이동~</a><br>
 	<table>
 		<thead>
 			<tr>

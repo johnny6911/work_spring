@@ -10,6 +10,7 @@
 		<input type="password" name="password" placeholder="비밀번호 입력" required>
 		<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
 		<input type="submit" value="로그인">
+		<input type="hidden" name="${ _csrf.parameterName }" value="${ _csrf.token }">
 	</form>
 	<a href="<c:url value='/join.do'/>">회원가입하기</a>
 	<c:if test="${ param.error == 'login' }">
