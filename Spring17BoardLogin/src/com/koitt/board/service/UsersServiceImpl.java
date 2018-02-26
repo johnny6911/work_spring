@@ -105,7 +105,8 @@ public class UsersServiceImpl implements UsersService {
 	public Authority getAuthority(Integer id) throws UsersException {
 		return authorityDao.select(id);
 	}
-
+	
+	// principal이라는 객체를 가져오기위해 메소드를 만든것
 	@Override
 	public UserDetails getPrincipal() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
