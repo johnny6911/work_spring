@@ -5,7 +5,6 @@ import java.net.URLDecoder;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +24,7 @@ import com.koitt.board.service.FileService;
 import com.koitt.board.service.UsersService;
 
 @Controller
-@RequestMapping("/board")	// 하위의 RequestMapping의 value 앞에 공통적으로 /board가 추가됨
+@RequestMapping("/board")	// 하위의 RequestMapping의 value 앞에 공통으로 /board 추가됨
 public class BoardWebController {
 	
 	@Autowired
@@ -105,19 +104,19 @@ public class BoardWebController {
 	// 글 작성 화면
 	@RequestMapping(value="/board-add.do", method=RequestMethod.GET)
 	public String add(Model model) {
-		// 현재 로그인한 사용자의 사용자 번호를 board 객체에 담는다
+		// 현재 로그인한 사용자의 email값을 가져온다.
 		String email = usersService.getPrincipal().getUsername();
 		try {
-			// 가져온 이메일 값을 이용하여 사용자 정보를 불러온다
+			// 가져온 이메일 값을 이용하여 사용자 정보를 불러온다. 
 			Users users = usersService.detailByEmail(email);
 			
 			// 비밀번호는 클라이언트에 제공하지 않기 위해 null값 설정
 			users.setPassword(null);
 			
-			// 비밀번호를 제외한 사용자 정보를 클라이언트에 전달한다
-			model.addAttribute("users",users);
+			// 비밀번호를 제외한 사용자 정보를 클라이언트에 전달한다.
+			model.addAttribute("users", users);
 			
-		}catch(UsersException e) {
+		} catch (UsersException e) {
 			System.out.println(e.getMessage());
 			model.addAttribute("error", "server");
 		}
@@ -139,8 +138,11 @@ public class BoardWebController {
 		board.setContent(content);
 		
 		try {
+			// 파일 서비스로부터 전달받은 파일명을 VO 객체에 담는다.
 			String filename = fileService.add(request, attachment);
 			board.setAttachment(filename);
+			
+			// 모든 내용을 저장한 VO 객체를 데이터베이스로 전달
 			boardService.add(board);
 			
 		} catch (BoardException e) {
@@ -234,27 +236,6 @@ public class BoardWebController {
 		}
 		
 		return "redirect:board-list.do";
-	}
-	
-	/*
-	 * 다운로드 링크를 화면에서 클릭하면 아래와 같이 서버에 GET 방식으로 요청한다.
-	 * download.do?filename=파일명
-	 * 
-	 * 아래 RequestMapping 애노테이션 뜻은 아래와 같다.
-	 * 요청 URL은 /download.do
-	 * 요청 HTTP Method는 GET
-	 * 요청한 쿼리문자열의 변수명이 filename일 경우 아래 메소드를 실행 (params)
-	 */
-	@RequestMapping(value="/download.do", method=RequestMethod.GET, params="filename")
-	public void download(HttpServletRequest request, HttpServletResponse response, 
-			String filename) {
-		
-		try {
-			fileService.download(request, response, filename);
-			
-		} catch (FileException e) {
-			System.out.println(e.getMessage());
-		}
 	}
 }
 

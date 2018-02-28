@@ -27,11 +27,11 @@ public interface UsersService {
 	public Users detailByEmail(String email) throws UsersException;
 	
 	// 사용자 권한 가져오기
-	public Authority getAuthority(Integer id) throws UsersException; 
+	public Authority getAuthority(Integer id) throws UsersException;
 	
-	/* 
-	 * Principal 객체 가져오기;
-	 * Principal: 시스템을 사용하려고 하는 사용자 (로그인한 사용자)
+	/*
+	 *  Principal 객체 가져오기
+	 *  Principal: 시스템을 사용하려고 하는 사용자 (로그인한 사용자)
 	 */
 	public UserDetails getPrincipal();
 	
@@ -41,3 +41,10 @@ public interface UsersService {
 	// 비밀번호 일치 여부 확인하는 메소드
 	public boolean isPasswordMatched(String oldPassword) throws UsersException;
 }
+
+
+
+
+
+
+

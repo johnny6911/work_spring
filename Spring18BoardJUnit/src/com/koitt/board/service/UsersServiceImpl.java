@@ -20,19 +20,20 @@ import com.koitt.board.dao.AuthorityDao;
 import com.koitt.board.dao.UsersDao;
 import com.koitt.board.model.Authority;
 import com.koitt.board.model.AuthorityId;
+import com.koitt.board.model.Board;
 import com.koitt.board.model.Users;
 import com.koitt.board.model.UsersException;
 
 @Service
 @Transactional
 public class UsersServiceImpl implements UsersService {
-
+	
 	@Autowired
 	private UsersDao usersDao;
-
+	
 	@Autowired
 	private AuthorityDao authorityDao;
-
+	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
@@ -51,25 +52,18 @@ public class UsersServiceImpl implements UsersService {
 		// 입력받은 비밀번호를 암호화
 		String encode = passwordEncoder.encode(users.getPassword());
 		users.setPassword(encode);
-
-		// 가입하려는 사용자의 권한을 입력 (일반사용자 권한 : 20, "USER")
+		
+		// 가입하려는 사용자의 권한을 입력 (일반사용자 권한: 20, "USER")
 		Authority auth = new Authority(AuthorityId.USER.getAuthorityId(), AuthorityId.USER.name());
-
+		
 		// Set 컬렉션을 이용하여 users 객체에 권한을 담기
 		Set<Authority> auths = new HashSet<>();
-		auths.add(auth);		
+		auths.add(auth);
 		users.setAuthorities(auths);
-
+		
 		// users 테이블에 사용자 정보 입력
 		usersDao.insert(users);
-
-		// 방금 등록한 users의 사용자 번호를 가져온다.
-		Integer no = usersDao.selectLastInsertId();
-		System.out.println("aaaaa: " + no);
-
-		// 가져온 사용자 번호를 users 객체에 담는다.
-		users.setNo(no);
-
+		
 		// users_authority 테이블에 사용자 권한 정보 입력
 		usersDao.insertAuthority(users);
 	}
@@ -91,7 +85,7 @@ public class UsersServiceImpl implements UsersService {
 		
 		// 암호화까지 마친 users 객체를 데이터베이스로 전달
 		usersDao.update(users);
-		
+
 		// 기존에 저장되어 있던 첨부파일명을 컨트롤러로 전달
 		return filename;
 	}
@@ -105,34 +99,34 @@ public class UsersServiceImpl implements UsersService {
 	public Authority getAuthority(Integer id) throws UsersException {
 		return authorityDao.select(id);
 	}
-	
-	// principal이라는 객체를 가져오기위해 메소드를 만든것
+
 	@Override
 	public UserDetails getPrincipal() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
 		Object principal = auth.getPrincipal();
 		if (principal instanceof UserDetails) {
 			return (UserDetails) principal;
 		}
-
+		
 		return null;
 	}
 
 	/*
-	 * 아래와 같이 코드를 작성하면 스프링에서 로그아웃 처리
+	 * 아래와 같이 코드를 작성하면 스프링에서 로그아웃 처리를 한다.
 	 */
 	@Override
 	public void logout(HttpServletRequest req, HttpServletResponse resp) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
+		
 		if (auth != null) {
-			new SecurityContextLogoutHandler().logout(req,resp,auth);
+			new SecurityContextLogoutHandler().logout(req, resp, auth);
 		}
 	}
 
 	@Override
-	public boolean isPasswordMatched(String oldPassword) throws UsersException{
-		// principal 객체에서 현재 로그인한 사용자의 암호화된 비밀번호를 가져올 수 있다
+	public boolean isPasswordMatched(String oldPassword) throws UsersException {
+		// 현재 로그인한 사용자의 암호화된 비밀번호를 가져온다.
 		String email = this.getPrincipal().getUsername();
 		Users users = usersDao.selectByEmail(email);
 		
@@ -141,3 +135,11 @@ public class UsersServiceImpl implements UsersService {
 	}
 
 }
+
+
+
+
+
+
+
+

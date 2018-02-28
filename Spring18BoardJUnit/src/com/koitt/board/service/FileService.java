@@ -7,7 +7,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.koitt.board.model.FileException;
 
-public interface FileService<T> {
+public interface FileService {
 	
 	// 파일 추가
 	public String add(HttpServletRequest request, MultipartFile attachment) throws FileException;
@@ -24,7 +24,6 @@ public interface FileService<T> {
 	
 	// 파일 저장 폴더 경로 가져오기(ContextPath + /upload)
 	public String getUploadPath(HttpServletRequest request);
-	
 }
 
 

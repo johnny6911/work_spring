@@ -5,12 +5,12 @@
 <head><title>게시물 작성</title></head>
 <body>
 	<h1>게시물 작성</h1>
-	<form action="<c:url value='/board/board-add.do' />" method="post" enctype="multipart/form-data">
+	<form action="<c:url value='/board/board-add.do'/>" method="post" enctype="multipart/form-data">
 		<div>
 			<span>작성자: </span>
-			<span>${ users.name } (${ users.email })</span>
+			<span>${ users.name }(${ users.email })</span>
 		</div>
-		 <div>
+		<div>
 			<label>제목<input type="text" name="title"></label>
 		</div>
 		<div>

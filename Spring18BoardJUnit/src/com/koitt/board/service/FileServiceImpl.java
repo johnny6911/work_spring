@@ -15,13 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.koitt.board.model.FileException;
 
 @Service
-public class FileServiceImpl<T> implements FileService<T> {
+public class FileServiceImpl implements FileService {
 
 	private static final String UPLOAD_FOLDER = "/upload";
 
 	@Override
-	public String add(HttpServletRequest request, MultipartFile attachment
-			) throws FileException {
+	public String add(HttpServletRequest request, MultipartFile attachment) throws FileException {
 		try {
 			// 최상위 경로 밑에 upload 폴더 경로를 가져온다.
 			String path = request.getServletContext().getRealPath(UPLOAD_FOLDER);
@@ -67,9 +66,9 @@ public class FileServiceImpl<T> implements FileService<T> {
 				uploadFilename = URLEncoder.encode(uploadFilename, "UTF-8");
 				
 				/*
-				 * 16진수 시간값이 포함된 파일명을 컨트롤러로 전달한다
+				 * 16진수 시간값이 포함된 파일명을 컨트롤러로 전달한다.
 				 * 전달 후 컨트롤러에서 VO 객체에 setAttachment 메소드를 이용하여
-				 * 파일명을 VO 객체에 전달한다
+				 * 파일명을 VO 객체에 설정한다.
 				 */
 				return uploadFilename;
 			}
@@ -195,7 +194,6 @@ public class FileServiceImpl<T> implements FileService<T> {
 	public String getUploadPath(HttpServletRequest request) {
 		return request.getContextPath() + UPLOAD_FOLDER;
 	}
-
 }
 
 

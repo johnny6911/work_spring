@@ -7,12 +7,12 @@ import java.util.Set;
 // Java bean
 public class Users implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private Integer no;				// 회원번호
-	private String email;			// 이메일 (아이디 용도)
-	private String password;		// 비밀번호
-	private String name;			// 이름
-	private String attachment;		// 프로필 사진 명
-	private List<Board> boardList;	// 해당 사용자의 게시물 목록
+	private Integer no;					// 회원번호
+	private String email;				// 이메일 (아이디 용도)
+	private String password;			// 비밀번호
+	private String name;				// 이름
+	private String attachment;			// 프로필 사진 파일명
+	private List<Board> boardList;		// 해당 사용자의 게시물 목록
 	private Set<Authority> authorities;	// 해당 사용자의 권한 목록
 	
 	/*
@@ -24,7 +24,8 @@ public class Users implements Serializable {
 	public Users() {}
 
 	// 2. 생성자
-	public Users(Integer no, String email, String password, String name, String attachment) {
+	public Users(Integer no, String email, String password, 
+			String name, String attachment) {
 		this.no = no;
 		this.email = email;
 		this.password = password;
@@ -137,10 +138,10 @@ public class Users implements Serializable {
 		builder.append(password);
 		builder.append(", name=");
 		builder.append(name);
-		builder.append(", boardList=");
-		builder.append(boardList);
 		builder.append(", attachment=");
 		builder.append(attachment);
+		builder.append(", boardList=");
+		builder.append(boardList);
 		builder.append(", authorities=");
 		builder.append(authorities);
 		builder.append("]");
