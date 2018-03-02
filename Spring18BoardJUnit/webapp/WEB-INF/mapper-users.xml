@@ -43,7 +43,7 @@
   	</select>
   	
   	<insert id="insert-users" parameterType="Users" 
-  		useGeneratedKeys="true" keyProperty="no">
+  		useGeneratedKeys="true" keyProperty="no"> <!-- 아이바티스에서 제공하는 유즈제너레이트키를 이용해서 번호증가 -->
   		INSERT INTO users (email, password, name, attachment)
   		VALUES (#{email}, #{password}, #{name}, #{attachment})
   	</insert>
