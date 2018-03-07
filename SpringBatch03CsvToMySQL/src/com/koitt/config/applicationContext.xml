@@ -53,7 +53,7 @@
 	</bean>
 	
 	<!-- Job과 관련된 스프링 설정은 따로 분리해서 선언하기 위해 import 사용 -->
-	<import resource="../jobs/job-csv-to-xml.xml" />
+	<import resource="../jobs/job-csv-job-mysql.xml" />
 
 </beans>
 
