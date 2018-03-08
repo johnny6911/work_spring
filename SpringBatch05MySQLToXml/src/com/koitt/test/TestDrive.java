@@ -22,6 +22,7 @@ public class TestDrive {
 			JobParameters param = new JobParametersBuilder()
 					.addString("age", "20") //나이가 20살 초반인사람만 xml로 출력이됨
 					.toJobParameters();
+			
 			JobExecution execution = launcher.run(job, param);
 			System.out.println("종료 상태: " + execution.getStatus());
 			System.out.println("종료 상태: " + execution.getAllFailureExceptions());

@@ -6,7 +6,7 @@ public class User {
 	private String Password;
 	private Integer age;
 	
-	
+	// X스트림 마샬러가 훨씬 편함
 	public Integer getId() {
 		return id;
 	}
