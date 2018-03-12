@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>CSS 스타일 속성</title>
+	<style>
+		/*  
+			크기 단위
+			%: 백분율 단위 (부모의 해당 속성 값 기준 - 상대값)
+			em: 배수 단위 (부모의 해당 속성 값 기준 - 상대값)
+			rem: 배수 단위 (Root 태그의 해당 속성 값 기준 - 상대값)
+			px: 픽셀 (고정값)
+		*/
+		/* p:nth-child(1){}
+		p:nth-child(2){ font-size: 100% }
+		p:nth-child(3){ font-size: 150% }
+		p:nth-child(4){ font-size: 200% } */
+		
+		/* p:nth-child(1){}
+		p:nth-child(2){ font-size: 1em }
+		p:nth-child(3){ font-size: 1.5em }
+		p:nth-child(4){ font-size: 2em } */
+		
+		html { font-size: 20px }
+		body { font-size: 16px }
+		p:nth-child(1){}
+		p:nth-child(2){ font-size: 1em }
+		p:nth-child(3){ font-size: 1.5em }
+		p:nth-child(4){ font-size: 2em }
+		
+		/* html { font-size: 20px }
+		body { font-size: 16px }
+		p:nth-child(1){}
+		p:nth-child(2){ font-size: 20px }
+		p:nth-child(3){ font-size: 30px }
+		p:nth-child(4){ font-size: 40px } */
+		
+		/* 
+			색상 단위
+			#000000									HEX 코드 단위 (RGB)
+			rgb(red, green, blue)					RGB 색상 단위
+			rgba(red, green, blue, alpha) 			RGBA 색상 단위
+			hsl(hue, saturation, lightness)			HSL 색상 단위
+			hsla(hue, saturation, lightness, alpha)	HSLA 색상 단위
+			
+			alpha 값: 투명도를 의미 (0.0 ~ 1.0 까지의 값)
+		 */
+		 .rgb { background-color: rgb(0, 0, 0) } /* 255가 16진수로 FF이다 */
+		 .rgba { background-color: rgba(0, 0, 0, 0.5) }
+		 .hsl { background-color: hsl(33, 100%, 50%) } /* 색상, 채도, 명도 */
+		 .hsla { background-color: hsla(33, 100%, 50%, 0.5) }
+		 .color-box{ width: 200px; height: 200px }
+		 
+		 /*
+		 	URL 단위
+		 */
+		 body {
+		 	/* background-image: url('img/Desert.jpg') */
+		 }
+		 
+		 /* 
+		 	가시 속성 (display)
+		 	none: 태그를 화면에서 보이지 않게 만듭니다
+		 	block: 태그를 block 형식으로 지정합니다
+		 	inline: 태그를 inline 형식으로 지정
+		 	inline-block: 태그를 inline-block 형식으로 지정
+		  */
+		 /*  #box{ display: none } */	/* 화면에서 사라짐 */
+		 /* #box{ display: inline } */	/* 한 줄안에 들어가며, 영역이 부족하면 한글자씩 떨어짐 */
+		 /* #box{ display: block } */	/* 한 줄 모두를 페이지 너비 만큼 차지 */
+		 #box{ display: inline-block } /* inline 속성과 block 속성을 모두 가짐, 영역이 부족하면 해당 태그 모두 떨어짐 
+		 									하나의 블럭, 즉 하나의 묶음 */
+		 
+		 /* 
+		 	visibility 속성
+		 	visible: 태그를 보이게 만듦.
+		 	hidden: 태그를 보이지 않게 만듥 (보이진 않지만 해당 영역을 차지)
+		  */
+		  
+		  #box {visibility:hidden}
+		  table { visibility: collapse } /* display의 none과 똑같음, 
+		  								table에만 적용할수 있는 display none과 같은 효과 */
+		  /*
+		  	opacity 속성
+		  	0.0 ~ 1.0 값을 사용 (투명도)
+		  */
+		  #box { visibility: visible; opacity: 0.2 }
+	</style>
+</head>
+<body>
+	<p>동해물과 백두산이 마르고 닳도록</p>
+	<p>남산위에 저 소나무 철갑을 두른듯</p>
+	<p>가을하늘 공활한데 높고 구름없이</p>
+	<p>이기상과 이 마음으로 충성을 다하여</p>
+	
+	<div class="color-box rgb"></div>
+	<div class="color-box rgba"></div>
+	<div class="color-box hsl"></div>
+	<div class="color-box hsla"></div>
+	
+	<span>Dummy</span>
+	<div id="box">
+		<span>동해물과 백두산이 마르고 닳도록</span>
+	</div>
+	<span>Dummy</span>
+	
+	<table>
+		<tr>
+			<td>테스트용 테이블</td>
+		</tr>
+	</table>
+</body>
+</html>
