@@ -62,11 +62,11 @@
 		 	가시 속성 (display)
 		 	none: 태그를 화면에서 보이지 않게 만듭니다
 		 	block: 태그를 block 형식으로 지정합니다
-		 	inline: 태그를 inline 형식으로 지정
-		 	inline-block: 태그를 inline-block 형식으로 지정
+		 	inline: 태그를 inline 형식으로 지정, 한줄만큼
+		 	inline-block: 태그를 inline-block 형식으로 지정, 안에 내용물만큼 공간을 차지, 만약 공간이 부족하면 블럭단위로 밑으로 떨어짐
 		  */
 		 /*  #box{ display: none } */	/* 화면에서 사라짐 */
-		 /* #box{ display: inline } */	/* 한 줄안에 들어가며, 영역이 부족하면 한글자씩 떨어짐 */
+		 /* #box{ display: inline } */	/* 한 줄안에 들어가며(한줄만큼), 영역이 부족하면 한글자씩 떨어짐 */
 		 /* #box{ display: block } */	/* 한 줄 모두를 페이지 너비 만큼 차지 */
 		 #box{ display: inline-block } /* inline 속성과 block 속성을 모두 가짐, 영역이 부족하면 해당 태그 모두 떨어짐 
 		 									하나의 블럭, 즉 하나의 묶음 */
@@ -85,6 +85,34 @@
 		  	0.0 ~ 1.0 값을 사용 (투명도)
 		  */
 		  #box { visibility: visible; opacity: 0.2 }
+		  
+		  /*
+		  	박스 속성
+		  */
+		  .a-box { /* 클래스로 만듬 */
+		  	margin: 10px;				/* 바깥 여백 */
+		  	padding: 10px;				/* 안쪽 여백 */
+		  	width: 100px;				
+		  	height: 100px;
+		  	border: 10px solid black;	/* 경계선 두께, 선 종류, 색상 */
+		  }
+		  
+		  .a-box:first-child {
+		  	background: #FF0000;
+		  	box-sizing: content-box;	/* content-box: 내부 내용물의 너비가 100px */
+		  }
+		  
+		  .a-box:last-child {
+		  	background: orange;
+		  	box-sizing: border-box;		/* border-box: 안쪽부터 경계선 영역까지의 너비가 100px  */
+		  }
+		  
+		  /* border-width, border-style, border-color */
+		  .b-box {
+		  	border-width: thick;
+		  	border-style: dashed;
+		  	border-color: blue;
+		  }
 	</style>
 </head>
 <body>
@@ -109,5 +137,12 @@
 			<td>테스트용 테이블</td>
 		</tr>
 	</table>
+	
+	<div>
+		<div class="a-box"></div>
+		<div class="a-box"></div>
+	</div>
+	
+	<div class="a-box b-box"></div>
 </body>
 </html>

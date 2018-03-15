@@ -58,7 +58,7 @@
 		
 		/*
 			후손 선택자
-			선택자A 선택자 B: 선택자 A의 후손에 위치하는 선택자B를 선택, 전부
+			선택자A 선택자 B: 선택자 A의 후손에 위치하는 선택자B를 선택, 자기 자신 밑에 전부(모든 태그)
 		*/
 		#section h1 { color: #ff0000 }
 		#footer h1 { color: #00ff00 }
@@ -69,7 +69,7 @@
 			선택자A > 선택자 B: 선택자A의 자손에 위치하는 선택자 B를 선택
 			섹션이라는 아이디값을 가진 태그 밑에있는 모든 h1태그에 해당 색상을 적용하겠다는것 (후손)
 		*/
-		#section > h1 { color: #ff00ff }
+		#section > h1 { color: #ff00ff } /* 세션 바로 밑에 있는 h1태그만 그 밑에 태그는 h1이라도 적용이 안됨 */
 		#footer > h1 { color: #ff00ff }
 		#ex01 > div { color: #ff0000 }
 		#ex01 > div > div { color: #00ff00 }
@@ -131,7 +131,7 @@
 				동작한다.
 					
 			*/
-			/* -ms-transition-duration: 1s; 	
+			/* -ms-transition-duration: 1s; 제조사마다 그 고유접두사(예를 들면 -ms-)를 앞에 붙여 사용함	
 			-webkit-transition-duration: 1s; */
 			transition-duration: 1s;
 		}
