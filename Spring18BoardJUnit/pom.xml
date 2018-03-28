@@ -4,7 +4,6 @@
 	<groupId>com.koitt</groupId>
 	<artifactId>Spring14BoardMVC</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -19,9 +18,6 @@
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
-				<configuration>
-					<warSourceDirectory>webapp</warSourceDirectory>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
